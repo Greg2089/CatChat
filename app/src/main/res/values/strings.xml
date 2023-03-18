@@ -5,6 +5,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="help">Help</string>
     <string name="help_menu">Help</string>
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Sent Items</string>
+    <string name="help_menu_b">Help</string>
+    <string name="sent_item_b">Sent Item</string>
+    <string name="inbox_b">Inbox</string>
 </resources>

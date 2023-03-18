@@ -10,6 +10,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,17 +23,28 @@ class MainActivity : AppCompatActivity() {
         val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         //region Настройка toolbar, чтобы она включала кнопку Up, и отображала, к какому экрану перешли
-        val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        /**получение ссылки на navigation controller из navigation host*/
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
-        val builder = AppBarConfiguration.Builder (navController.graph)
+
+        /**Создаем конфигурацию, которая связывает toolbar c navigation graph*/
+        val builder = AppBarConfiguration.Builder(navController.graph)
         val appBarConfiguration = builder.build()
+        /** Строка отвечает за конфигурацию на toolbar*/
         toolbar.setupWithNavController(navController, appBarConfiguration)
+
+        //endregion
+        //region bottom navigation bar
+        val bottomNavView = findViewById<BottomNavigationView>(R.id.bottom_nav)
+        bottomNavView.setupWithNavController(navController)
         //endregion
     }
-        //region Добавляем пункты меню в toolbar (в данном случае Help ?)
+
+    /** Эти регионы относятся к toolbar*/
+    //region Добавляем пункты меню в toolbar (в данном случае Help ?)
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_toolbar,menu)
+        menuInflater.inflate(R.menu.menu_toolbar, menu)
         return super.onCreateOptionsMenu(menu)
     }
     //endregion
