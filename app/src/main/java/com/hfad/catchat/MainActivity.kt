@@ -2,6 +2,7 @@ package com.hfad.catchat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.drawerlayout.widget.DrawerLayout
@@ -12,7 +13,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
-//import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -43,14 +44,15 @@ class MainActivity : AppCompatActivity() {
         toolbar.setupWithNavController(navController, appBarConfiguration)
 
         //endregion
-        /* //region bottom navigation bar
-         val bottomNavView = findViewById<BottomNavigationView>(R.id.bottom_nav)
-         bottomNavView.setupWithNavController(navController)
-         //endregion*/
+
+        //region bottom navigation bar
+        val bottomNavView = findViewById<BottomNavigationView>(R.id.bottom_nav)
+        bottomNavView.setupWithNavController(navController)
+        //endregion
 
         //region Drawer
         //Включаем навигацию при нажатии элемента, связав drawer с navigation controller
-        val navView =findViewById<NavigationView>(R.id.nav_view)
+        val navView = findViewById<NavigationView>(R.id.nav_view)
         NavigationUI.setupWithNavController(navView, navController)
         //endregion
     }
@@ -66,8 +68,8 @@ class MainActivity : AppCompatActivity() {
     //region Переход к месту назначения при нажатие элемента
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
-        return item.onNavDestinationSelected(navController)
-        return super.onOptionsItemSelected(item)
+        return item.onNavDestinationSelected(navController) ||
+                return super.onOptionsItemSelected(item)
 
     }
     // endregion
